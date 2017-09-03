@@ -1,0 +1,11 @@
+{
+  "name": "koble-database",
+  "version": "0.0.1",
+  "description": "koble database",
+  "repository": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mongoose": "^4.11.4"
+  }
+}

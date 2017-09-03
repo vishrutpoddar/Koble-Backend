@@ -1,0 +1,18 @@
+Starting the database
+
+    mongod --config databaseConfig.yaml
+
+
+To see the database from the command line:
+
+    mongo --port <portNumber>
+
+
+To download the node modules:
+
+    npm install
+
+
+When download a new node package
+
+    npm install <package Name> --save

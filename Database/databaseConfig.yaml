@@ -1,0 +1,13 @@
+systemLog:
+  destination: file
+  path: data/log/mongoDB/log.log
+  logAppend: true
+storage:
+  dbPath: data/db/mongoDB
+  journal:
+    enabled: true
+net:
+  bindIp: 127.0.0.1
+  port: 3979
+processManagement:
+  fork: false
