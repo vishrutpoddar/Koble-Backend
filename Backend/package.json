@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "description": "des",
+  "repository": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.15.3",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mongoose": "^4.11.4"
+  }
+}
