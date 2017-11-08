@@ -32,6 +32,21 @@ const connectionOptions = {
     headers: {},
 }
 
+const postOptions = {
+    host: 'localhost',
+    port: databasePort,
+    method: 'POST',
+    path: '/api/users',
+    agent: false,
+    headers: {
+        'Content-Type': 'application/json',
+    }
+    //key: fs.readFileSync('./keys/receive/server.key').toString(),
+    //cert: fs.readFileSync('./keys/receive/server.crt').toString(),
+    //rejectUnauthorized: false
+    //requestCert:  true
+}
+
 //process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 /**
@@ -82,6 +97,30 @@ app.get('/get', function (req, res){
  * PROJECT DATA SECTION
  */
 
+
+app.post('/api/users', function (req, res){
+    console.log(req.body);
+    const request = https.request(postOptions, (response) => {
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => {
+            console.log(`BODY: ${chunk}`);
+            res.send(chunk);
+        });
+        response.on('end', () => {
+            console.log('No more data in response.');
+            res.end();
+        });
+    });
+    request.on('error', (e) => {
+        console.error(`problem with request: ${e.message}`);
+        res.status(404).send(e).end();
+    });
+    // write data to request body
+    request.write(JSON.stringify(req.body));
+    request.end();
+
+    //emailUser()
+});
 
 
 
