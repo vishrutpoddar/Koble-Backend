@@ -19,9 +19,13 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('./Schema/User');
+var bodyParser = require('body-parser');
 
 var app = express();
 var port = 3000;
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 
 mongoose.Promise = global.Promise;
@@ -30,13 +34,6 @@ var connection = mongoose.connect('mongodb://localhost:3979/test', {
     useMongoClient: true,
     promiseLibrary: global.Promise,
 });
-
-
-var userSchema = mongoose.Schema({
-    id: {type: String, required: true, unique: true}
-});
-
-var User = mongoose.model('User', userSchema);
 
 
 /**
@@ -68,6 +65,20 @@ app.get('/get', function (req, res){
         else {
             res.send(data).end();
             console.log(data);
+        }
+    });
+});
+
+app.post('/api/users', function (req, res){
+    console.log(req.body);
+    new User(req.body).save(function (err, data) {
+        if (err) {
+            res.status(404).send('404 : the page requested could not be returned').end();
+            console.error(err);
+        }
+        else {
+            res.send(data).end();
+            console.log('SEND DATA' + data);
         }
     });
 });

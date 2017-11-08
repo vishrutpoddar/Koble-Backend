@@ -1,8 +1,11 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+//http://devsmash.com/blog/implementing-max-login-attempts-with-mongoose
 
-var userSchema = new Schema({
-    id: {type: String, required: true, unique: true}
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var userschema = new Schema({
+    name: {type: String, required: true, unique: true},
 });
 
-module.export = mongoose.model('User', userSchema )
+
+module.exports = mongoose.model('User', userschema);
